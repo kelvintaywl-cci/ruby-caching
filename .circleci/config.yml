@@ -18,8 +18,7 @@ jobs:
           name: Install deps
           command: |
             # Please ensure that Gemfile.lock is not updated
-            # (You can do so via bundle config set frozen 'true')
-            # See .bundle/config file in this project.
+            bundle config set --local frozen 'true'
             bundle _2.3.4_ check || bundle _2.3.4_ install
       - run:
           name: Test deps
