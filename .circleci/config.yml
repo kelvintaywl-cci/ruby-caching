@@ -19,7 +19,7 @@ jobs:
           command: |
             # Please ensure that Gemfile.lock is not updated
             bundle config set --local frozen 'true'
-            bundle _2.3.4_ check || bundle _2.3.4_ install
+            bundle _2.3.4_ check --path vendor/bundle || bundle _2.3.4_ install
       - run:
           name: Test deps
           command: |
