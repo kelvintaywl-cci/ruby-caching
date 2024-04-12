@@ -10,21 +10,27 @@ jobs:
           name: install specific Bundler
           command: |
             gem install bundler --version '2.3.4'
-      - restore_cache:
-          keys:
-            - gemsv1-{{ checksum "Gemfile.lock" }}
-            - gemsv1
+      # - restore_cache:
+      #     keys:
+      #       - gemsv1-{{ checksum "Gemfile.lock" }}
+      #       - gemsv1
       - run:
           name: Install deps
           command: |
             # Please ensure that Gemfile.lock is not updated
             bundle config set --local frozen 'true'
+            bundle config set --local path tmp/bundle
             bundle _2.3.4_ check || bundle _2.3.4_ install
+      - run:
+          name: Check installed deps
+          command: |
+            ls -lah tmp/bundle
+            bundle list
       - run:
           name: Test deps
           command: |
             bundle _2.3.4_ exec cowsay
-      - save_cache:
-          key: gemsv1-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      # - save_cache:
+      #     key: gemsv1-{{ checksum "Gemfile.lock" }}
+      #     paths:
+      #       - vendor/bundle
