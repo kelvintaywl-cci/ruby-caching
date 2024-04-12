@@ -22,11 +22,13 @@ jobs:
             bundle config set --local path tmp/bundle
             bundle _2.3.4_ check || bundle _2.3.4_ install
       - run:
+          shell: "#!/bin/bash --login -eo pipefail"
           name: Check installed deps
           command: |
             bundle list
             bundle info cowsay
       - run:
+          shell: "#!/bin/bash --login -eo pipefail"
           name: Test deps
           command: |
             bundle _2.3.4_ exec cowsay
