@@ -24,8 +24,8 @@ jobs:
       - run:
           name: Check installed deps
           command: |
-            ls -lah tmp/bundle
             bundle list
+            bundle info cowsay
       - run:
           name: Test deps
           command: |
